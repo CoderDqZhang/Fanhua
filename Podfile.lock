@@ -1,0 +1,20 @@
+PODS:
+  - SnapKit (5.0.0)
+  - YYCache (1.0.4)
+
+DEPENDENCIES:
+  - SnapKit
+  - YYCache
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
+    - YYCache
+
+SPEC CHECKSUMS:
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+
+PODFILE CHECKSUM: 44a88b825b640e57f11cd813b0508c23f98c548c
+
+COCOAPODS: 1.6.1

@@ -1,0 +1,6 @@
+framework module Pods_FanHuaUITests {
+  umbrella header "Pods-FanHuaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
