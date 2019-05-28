@@ -202,55 +202,60 @@ class ViewController: UIViewController {
     }
     
     @objc func followButtonSelect(_ sender:UIButton) {
-        
-        let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))
-        followView.backgroundColor = .white
-        
-        var imageArray:[UIImage]! = []
-        let strs = ["1-1","1-4","1-5"]
-        for str in strs {
-            imageArray.append(UIImage.init(named: str)!)
+        if sender.imageView?.image != nil {
+            let flowerView = FlowerView.init(frame: CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: (SCRRENHEIGHT - 500) / 2, width: 400, height: 500))
+            flowerView.backgroundColor = .red
+            self.view.addSubview(flowerView)
+        }else{
+            let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))
+            followView.backgroundColor = .white
+            
+            var imageArray:[UIImage]! = []
+            let strs = ["1-1","1-4","1-5"]
+            for str in strs {
+                imageArray.append(UIImage.init(named: str)!)
+            }
+            let pageView = PageView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArray)
+            pageView.tag = 100
+            followView.addSubview(pageView)
+            
+            var imageArrays:[UIImage]! = []
+            let strsa = ["pow1","pow2","pow4","pow5","pow6","pow7","pow8"]
+            for str in strsa {
+                imageArrays.append(UIImage.init(named: str)!)
+            }
+            let pageView1 = PageView.init(frame: CGRect.init(x: 0, y: 400, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
+            pageView1.tag = 200
+            
+            followView.addSubview(pageView1)
+            
+            self.view.addSubview(followView)
+            
+            let button1 = UIButton.init(type: .custom)
+            button1.setTitle("种植", for: .normal)
+            button1.backgroundColor = .brown
+            button1.frame = CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: 800, width: 200, height: 80)
+            button1.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
+                let viewTag = self.view.viewWithTag(sender.tag) as! UIButton
+                print()
+                let name = "\(strsa[pageView1.selectIndex])-\(strs[pageView.selectIndex])"
+                let image = UIImage.init(named: name)
+                image?.scaling(to:viewTag.frame.size)
+                viewTag.setImage(image, for: .normal)
+                followView.removeFromSuperview()
+                CacheManager.getSharedInstance().saveNormaltModel(category: FlowerModel.init(fromDictionary: [
+                    "powName": strsa[pageView1.selectIndex],
+                    "flowerName": strs[pageView.selectIndex],
+                    "powFlowerName": name,
+                    "senderTat": sender.tag,
+                    "sun": 0,
+                    "water": 0,
+                    "weeding": 0,
+                    "apply": 0
+                    ]))
+            }
+            followView.addSubview(button1)
         }
-        let pageView = PageView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArray)
-        pageView.tag = 100
-        followView.addSubview(pageView)
-        
-        var imageArrays:[UIImage]! = []
-        let strsa = ["pow1","pow2","pow4","pow5","pow6","pow7","pow8"]
-        for str in strsa {
-            imageArrays.append(UIImage.init(named: str)!)
-        }
-        let pageView1 = PageView.init(frame: CGRect.init(x: 0, y: 400, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
-        pageView1.tag = 200
-        
-        followView.addSubview(pageView1)
-        
-        self.view.addSubview(followView)
-        
-        let button1 = UIButton.init(type: .custom)
-        button1.setTitle("种植", for: .normal)
-        button1.backgroundColor = .brown
-        button1.frame = CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: 800, width: 200, height: 80)
-        button1.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
-            let viewTag = self.view.viewWithTag(sender.tag) as! UIButton
-            print()
-            let name = "\(strsa[pageView1.selectIndex])-\(strs[pageView.selectIndex])"
-            let image = UIImage.init(named: name)
-            image?.scaling(to:viewTag.frame.size)
-            viewTag.setImage(image, for: .normal)
-            followView.removeFromSuperview()
-            CacheManager.getSharedInstance().saveNormaltModel(category: FlowerModel.init(fromDictionary: [
-                "powName": strsa[pageView1.selectIndex],
-                "flowerName": strs[pageView.selectIndex],
-                "powFlowerName": name,
-                "senderTat": sender.tag,
-                "sun": 0,
-                "water": 0,
-                "weeding": 0,
-                "apply": 0
-                ]))
-        }
-        followView.addSubview(button1)
     }
     
     

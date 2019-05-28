@@ -11,6 +11,7 @@
 		1F991768229CE57B00C8FDD5 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F991767229CE57B00C8FDD5 /* UIButton+Block.m */; };
 		1F99176B229D05C200C8FDD5 /* UIImage+UIImageExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176A229D05C200C8FDD5 /* UIImage+UIImageExtras.m */; };
 		1F99176D229D07E100C8FDD5 /* FlowerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176C229D07E000C8FDD5 /* FlowerModel.swift */; };
+		1F99176F229D3DC600C8FDD5 /* FlowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176E229D3DC600C8FDD5 /* FlowerView.swift */; };
 		5D1107E3089F12966A985DA3 /* Pods_FanHuaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA0110295BE122AB456B1D0 /* Pods_FanHuaTests.framework */; };
 		B2F1642B84961205F6454BDA /* Pods_FanHua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F83C51B0E1DF3A395F13E9 /* Pods_FanHua.framework */; };
 		B83BBA81229C230D002210FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BBA80229C230D002210FD /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		1F991769229D05C200C8FDD5 /* UIImage+UIImageExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImageExtras.h"; sourceTree = "<group>"; };
 		1F99176A229D05C200C8FDD5 /* UIImage+UIImageExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImageExtras.m"; sourceTree = "<group>"; };
 		1F99176C229D07E000C8FDD5 /* FlowerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerModel.swift; sourceTree = "<group>"; };
+		1F99176E229D3DC600C8FDD5 /* FlowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerView.swift; sourceTree = "<group>"; };
 		327F4CBB6BB081697C2650F5 /* Pods-FanHua.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FanHua.release.xcconfig"; path = "Target Support Files/Pods-FanHua/Pods-FanHua.release.xcconfig"; sourceTree = "<group>"; };
 		740070D79306F31B59F59CA9 /* Pods-FanHuaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FanHuaTests.release.xcconfig"; path = "Target Support Files/Pods-FanHuaTests/Pods-FanHuaTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E1CF288C1DA107381C7BEF9 /* Pods-FanHuaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FanHuaUITests.debug.xcconfig"; path = "Target Support Files/Pods-FanHuaUITests/Pods-FanHuaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				B83BBA80229C230D002210FD /* AppDelegate.swift */,
 				B83BBA82229C230D002210FD /* ViewController.swift */,
+				1F99176E229D3DC600C8FDD5 /* FlowerView.swift */,
 				1F991763229CC1AD00C8FDD5 /* PageView.swift */,
 				B83BBAB2229C4C00002210FD /* LoginView.swift */,
 				B83BBAB4229C5545002210FD /* ContactView.swift */,
@@ -447,6 +450,7 @@
 				B83BBAB3229C4C00002210FD /* LoginView.swift in Sources */,
 				B83BBAB5229C5545002210FD /* ContactView.swift in Sources */,
 				B83BBA81229C230D002210FD /* AppDelegate.swift in Sources */,
+				1F99176F229D3DC600C8FDD5 /* FlowerView.swift in Sources */,
 				1F991764229CC1AD00C8FDD5 /* PageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
