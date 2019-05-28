@@ -39,9 +39,45 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setUpView()
-//        self.setUpAnwser()
-//        self.setUpLoginView()
-
+        self.setUpAnwser()
+        self.setUpLoginView()
+        self.setUpTopView()
+    }
+    
+    func setUpTopView(){
+        let houseButton = UIButton.init(type: .custom)
+        houseButton.frame = CGRect.init(x: 100, y: 100, width: 200, height: 40)
+        houseButton.setTitle("仓库", for: .normal)
+        houseButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
+            let houseView = WarehouseView.init(frame: CGRect.init(x: 100, y: 300, width: SCRRENWIDHT - 200, height: SCRRENWIDHT - 200))
+            self.view.addSubview(houseView)
+        }
+        houseButton.setTitleColor(UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1), for: .normal)
+        houseButton.titleLabel?.font = UIFont.systemFont(ofSize: 45)
+        houseButton.tag = 1
+        self.view.addSubview(houseButton)
+        houseButton.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view.snp.left).offset(30)
+            make.top.equalTo(self.view.snp.top).offset(60)
+            make.size.equalTo(CGSize.init(width: 150, height: 100))
+        }
+        
+        let contactButton = UIButton.init(type: .custom)
+        contactButton.frame = CGRect.init(x: 100, y: 100, width: 200, height: 40)
+        contactButton.setTitle("通讯录", for: .normal)
+        contactButton.setTitleColor(UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1), for: .normal)
+        contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 45)
+        contactButton.tag = 1
+        contactButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
+            let contactView = ContactView.init(frame: CGRect.init(x: 100, y: 300, width: SCRRENWIDHT - 200, height: SCRRENWIDHT - 200))
+            self.view.addSubview(contactView)
+        }
+        self.view.addSubview(contactButton)
+        contactButton.snp.makeConstraints { (make) in
+            make.left.equalTo(houseButton.snp.right).offset(30)
+            make.top.equalTo(houseButton.snp.top).offset(0)
+            make.size.equalTo(CGSize.init(width: 150, height: 100))
+        }
     }
     
     func setUpLoginView(){
