@@ -2,7 +2,7 @@
 //  FlowerModel.swift
 //  FanHua
 //
-//  Created by Zhang on 2019/5/27.
+//  Created by Zhang on 2019/5/28.
 //  Copyright © 2019 Zhang. All rights reserved.
 //
 
@@ -10,24 +10,28 @@ import UIKit
 
 class FlowerModel : NSObject, NSCoding{
     
-    var disinsection : Int!
-    var fertilizer : Int!
-    var flowerpotName : String!
-    var flowersName : String!
+    var apply : Int!
+    var flowerName : String!
+    var powFlowerName : String!
+    var powName : String!
+    var senderTat : Int!
     var sun : Int!
     var water : Int!
+    var weeding : Int!
     
     
     /**
      * Instantiate the instance using the passed dictionary values to set the properties values
      */
     init(fromDictionary dictionary: [String:Any]){
-        disinsection = dictionary["disinsection"] as? Int
-        fertilizer = dictionary["fertilizer"] as? Int
-        flowerpotName = dictionary["flowerpotName"] as? String
-        flowersName = dictionary["flowersName"] as? String
+        apply = dictionary["apply"] as? Int
+        flowerName = dictionary["flowerName"] as? String
+        powFlowerName = dictionary["powFlowerName"] as? String
+        powName = dictionary["powName"] as? String
+        senderTat = dictionary["senderTat"] as? Int
         sun = dictionary["sun"] as? Int
         water = dictionary["water"] as? Int
+        weeding = dictionary["weeding"] as? Int
     }
     
     /**
@@ -36,23 +40,29 @@ class FlowerModel : NSObject, NSCoding{
     func toDictionary() -> [String:Any]
     {
         var dictionary = [String:Any]()
-        if disinsection != nil{
-            dictionary["disinsection"] = disinsection
+        if apply != nil{
+            dictionary["apply"] = apply
         }
-        if fertilizer != nil{
-            dictionary["fertilizer"] = fertilizer
+        if flowerName != nil{
+            dictionary["flowerName"] = flowerName
         }
-        if flowerpotName != nil{
-            dictionary["flowerpotName"] = flowerpotName
+        if powFlowerName != nil{
+            dictionary["powFlowerName"] = powFlowerName
         }
-        if flowersName != nil{
-            dictionary["flowersName"] = flowersName
+        if powName != nil{
+            dictionary["powName"] = powName
+        }
+        if senderTat != nil{
+            dictionary["senderTat"] = senderTat
         }
         if sun != nil{
             dictionary["sun"] = sun
         }
         if water != nil{
             dictionary["water"] = water
+        }
+        if weeding != nil{
+            dictionary["weeding"] = weeding
         }
         return dictionary
     }
@@ -63,12 +73,14 @@ class FlowerModel : NSObject, NSCoding{
      */
     @objc required init(coder aDecoder: NSCoder)
     {
-        disinsection = aDecoder.decodeObject(forKey: "disinsection") as? Int
-        fertilizer = aDecoder.decodeObject(forKey: "fertilizer") as? Int
-        flowerpotName = aDecoder.decodeObject(forKey: "flowerpotName") as? String
-        flowersName = aDecoder.decodeObject(forKey: "flowersName") as? String
+        apply = aDecoder.decodeObject(forKey: "apply") as? Int
+        flowerName = aDecoder.decodeObject(forKey: "flowerName") as? String
+        powFlowerName = aDecoder.decodeObject(forKey: "powFlowerName") as? String
+        powName = aDecoder.decodeObject(forKey: "powName") as? String
+        senderTat = aDecoder.decodeObject(forKey: "senderTat") as? Int
         sun = aDecoder.decodeObject(forKey: "sun") as? Int
         water = aDecoder.decodeObject(forKey: "water") as? Int
+        weeding = aDecoder.decodeObject(forKey: "weeding") as? Int
         
     }
     
@@ -78,23 +90,29 @@ class FlowerModel : NSObject, NSCoding{
      */
     @objc func encode(with aCoder: NSCoder)
     {
-        if disinsection != nil{
-            aCoder.encode(disinsection, forKey: "disinsection")
+        if apply != nil{
+            aCoder.encode(apply, forKey: "apply")
         }
-        if fertilizer != nil{
-            aCoder.encode(fertilizer, forKey: "fertilizer")
+        if flowerName != nil{
+            aCoder.encode(flowerName, forKey: "flowerName")
         }
-        if flowerpotName != nil{
-            aCoder.encode(flowerpotName, forKey: "flowerpotName")
+        if powFlowerName != nil{
+            aCoder.encode(powFlowerName, forKey: "powFlowerName")
         }
-        if flowersName != nil{
-            aCoder.encode(flowersName, forKey: "flowersName")
+        if powName != nil{
+            aCoder.encode(powName, forKey: "powName")
+        }
+        if senderTat != nil{
+            aCoder.encode(senderTat, forKey: "senderTat")
         }
         if sun != nil{
             aCoder.encode(sun, forKey: "sun")
         }
         if water != nil{
             aCoder.encode(water, forKey: "water")
+        }
+        if weeding != nil{
+            aCoder.encode(weeding, forKey: "weeding")
         }
         
     }

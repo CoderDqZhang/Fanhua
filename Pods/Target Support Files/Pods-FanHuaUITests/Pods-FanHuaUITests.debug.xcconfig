@@ -1,8 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AutoInsetter" "${PODS_CONFIGURATION_BUILD_DIR}/BetterSegmentedControl" "${PODS_CONFIGURATION_BUILD_DIR}/JXSegmentedView" "${PODS_CONFIGURATION_BUILD_DIR}/Pageboy" "${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa" "${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit" "${PODS_CONFIGURATION_BUILD_DIR}/Tabman" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache/YYCache.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AutoInsetter/AutoInsetter.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/JXSegmentedView/JXSegmentedView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Pageboy/Pageboy.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa/ReactiveCocoa.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift/ReactiveSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Tabman/Tabman.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache/YYCache.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -l"sqlite3" -framework "CoreFoundation" -framework "QuartzCore" -framework "SnapKit" -framework "UIKit" -framework "YYCache"
+OTHER_LDFLAGS = $(inherited) -l"sqlite3" -framework "AutoInsetter" -framework "BetterSegmentedControl" -framework "CoreFoundation" -framework "JXSegmentedView" -framework "Pageboy" -framework "QuartzCore" -framework "ReactiveCocoa" -framework "ReactiveSwift" -framework "SnapKit" -framework "Tabman" -framework "UIKit" -framework "YYCache"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

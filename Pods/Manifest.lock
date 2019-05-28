@@ -1,20 +1,49 @@
 PODS:
+  - AutoInsetter (1.7.1)
+  - BetterSegmentedControl (1.1)
+  - JXSegmentedView (0.0.13)
+  - Pageboy (3.2.2)
+  - ReactiveCocoa (10.0.0):
+    - ReactiveSwift (~> 6.0)
+  - ReactiveSwift (6.0.0)
   - SnapKit (5.0.0)
+  - Tabman (2.4.2):
+    - AutoInsetter (~> 1.7)
+    - Pageboy (~> 3.2)
   - YYCache (1.0.4)
 
 DEPENDENCIES:
+  - BetterSegmentedControl
+  - JXSegmentedView
+  - ReactiveCocoa
+  - ReactiveSwift
   - SnapKit
+  - Tabman
   - YYCache
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AutoInsetter
+    - BetterSegmentedControl
+    - JXSegmentedView
+    - Pageboy
+    - ReactiveCocoa
+    - ReactiveSwift
     - SnapKit
+    - Tabman
     - YYCache
 
 SPEC CHECKSUMS:
+  AutoInsetter: 0c40f6505369c7b75cf7ac27e3cce2170293ac27
+  BetterSegmentedControl: ea08bea31345cf096977ef5aa588b635fb21fa18
+  JXSegmentedView: adb975e3af18ba9934e9fd3740e536173eb468ab
+  Pageboy: b6e8f5082c23ef2490ddf21339fb6e19673d1453
+  ReactiveCocoa: 6d4c37ba236f5d9a7a55b2172cd09f19ba85f574
+  ReactiveSwift: 24b7ed245617bbfd30ee0c87779b6c64ac1b4518
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  Tabman: 6e0888c9b9227d9da03e51a90f1f91f53454bfa1
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 44a88b825b640e57f11cd813b0508c23f98c548c
+PODFILE CHECKSUM: d58d48341c834e515ec518a124d1ca8bbed12bb8
 
 COCOAPODS: 1.6.1

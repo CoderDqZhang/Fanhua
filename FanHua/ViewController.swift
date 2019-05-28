@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import ReactiveSwift
+import ReactiveCocoa
 
 let SCRRENWIDHT:CGFloat = UIScreen.main.bounds.size.width
 let SCRRENHEIGHT:CGFloat = UIScreen.main.bounds.size.height
@@ -21,6 +23,8 @@ class ViewController: UIViewController {
     
     var scrollerView:UIScrollView!
     
+    var followName:String!
+    var powName:String!
     
     var loginView:LoginView!
     
@@ -35,8 +39,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setUpView()
-        self.setUpAnwser()
-        self.setUpLoginView()
+//        self.setUpAnwser()
+//        self.setUpLoginView()
 
     }
     
@@ -66,8 +70,6 @@ class ViewController: UIViewController {
         timeLabel.textColor = UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1)
         timeLabel.font = UIFont.systemFont(ofSize: 45)
         answerView.addSubview(timeLabel)
-        
-        
         
         let label = UILabel.init(frame: CGRect.init(x: 70, y: 390, width: SCRRENWIDHT - 140, height: 120))
         label.numberOfLines = 0
@@ -178,9 +180,20 @@ class ViewController: UIViewController {
         imageView.image = image
         scrollerView.addSubview(imageView)
         
+        let array = CacheManager.getSharedInstance().getCategoryModels()
+
         for index in 0...frames.count - 1 {
             let button = self.setUpFollowButton(frame: frames[index])
-            button.tag = index
+            button.tag = index + 1000
+            if array != nil {
+                for model in array! {
+                    let flower = FlowerModel.init(fromDictionary: model as! [String : Any])
+                    if flower.senderTat == index + 1000 {
+                        button.setImage(UIImage.init(named: flower.powFlowerName), for: .normal)
+                    }
+                }
+            }
+            
             button.addTarget(self, action: #selector(self.followButtonSelect(_:)), for: .touchUpInside)
             scrollerView.addSubview(button)
         }
@@ -190,7 +203,56 @@ class ViewController: UIViewController {
     
     @objc func followButtonSelect(_ sender:UIButton) {
         
+        let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))
+        followView.backgroundColor = .white
+        
+        var imageArray:[UIImage]! = []
+        let strs = ["1-1","1-4","1-5"]
+        for str in strs {
+            imageArray.append(UIImage.init(named: str)!)
+        }
+        let pageView = PageView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArray)
+        pageView.tag = 100
+        followView.addSubview(pageView)
+        
+        var imageArrays:[UIImage]! = []
+        let strsa = ["pow1","pow2","pow4","pow5","pow6","pow7","pow8"]
+        for str in strsa {
+            imageArrays.append(UIImage.init(named: str)!)
+        }
+        let pageView1 = PageView.init(frame: CGRect.init(x: 0, y: 400, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
+        pageView1.tag = 200
+        
+        followView.addSubview(pageView1)
+        
+        self.view.addSubview(followView)
+        
+        let button1 = UIButton.init(type: .custom)
+        button1.setTitle("种植", for: .normal)
+        button1.backgroundColor = .brown
+        button1.frame = CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: 800, width: 200, height: 80)
+        button1.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
+            let viewTag = self.view.viewWithTag(sender.tag) as! UIButton
+            print()
+            let name = "\(strsa[pageView1.selectIndex])-\(strs[pageView.selectIndex])"
+            let image = UIImage.init(named: name)
+            image?.scaling(to:viewTag.frame.size)
+            viewTag.setImage(image, for: .normal)
+            followView.removeFromSuperview()
+            CacheManager.getSharedInstance().saveNormaltModel(category: FlowerModel.init(fromDictionary: [
+                "powName": strsa[pageView1.selectIndex],
+                "flowerName": strs[pageView.selectIndex],
+                "powFlowerName": name,
+                "senderTat": sender.tag,
+                "sun": 0,
+                "water": 0,
+                "weeding": 0,
+                "apply": 0
+                ]))
+        }
+        followView.addSubview(button1)
     }
+    
     
     func setUpFollowButton(frame:CGRect) ->UIButton{
         let followButton = UIButton.init(type: .custom)

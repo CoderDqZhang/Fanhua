@@ -9,6 +9,10 @@ target 'FanHua' do
   pod 'SnapKit'
   pod 'YYCache'
   pod 'Tabman'
+  pod 'BetterSegmentedControl'
+  pod 'JXSegmentedView'
+  pod 'ReactiveCocoa'
+  pod 'ReactiveSwift'
   
   target 'FanHuaTests' do
     inherit! :search_paths
