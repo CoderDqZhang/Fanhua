@@ -38,9 +38,38 @@ class CacheManager: NSObject {
         CacheManager._sharedInstance.otherCache?.saveItem(withKey: "FlowerModel", value: NSKeyedArchiver.archivedData(withRootObject: array), filename: "FlowerModel", extendedData: nil)
     }
     
+    func updateModel(array:NSMutableArray) {
+        CacheManager._sharedInstance.otherCache?.saveItem(withKey: "FlowerModel", value: NSKeyedArchiver.archivedData(withRootObject: array), filename: "FlowerModel", extendedData: nil)
+    }
+    
     func getCategoryModels() ->NSMutableArray? {
         if (CacheManager._sharedInstance.otherCache?.itemExists(forKey: "FlowerModel"))! {
             let item:Data = ((CacheManager._sharedInstance.otherCache?.getItemValue(forKey: "FlowerModel"))!)
+            return NSKeyedUnarchiver.unarchiveObject(with: item) as? NSMutableArray
+        }
+        return nil
+    }
+    
+    
+    func saveNormaltWarehouseModel(category:FlowerModel){
+        var array = NSMutableArray.init()
+        if (CacheManager._sharedInstance.otherCache?.itemExists(forKey: "WarehouseFlowerModel"))! {
+            let item:Data = ((CacheManager._sharedInstance.otherCache?.getItemValue(forKey: "WarehouseFlowerModel"))!)
+            array =  NSKeyedUnarchiver.unarchiveObject(with: item) as! NSMutableArray
+        }
+        
+        array.add(category.toDictionary())
+        
+        CacheManager._sharedInstance.otherCache?.saveItem(withKey: "WarehouseFlowerModel", value: NSKeyedArchiver.archivedData(withRootObject: array), filename: "WarehouseFlowerModel", extendedData: nil)
+    }
+    
+    func updateWarehouseModel(array:NSMutableArray) {
+        CacheManager._sharedInstance.otherCache?.saveItem(withKey: "WarehouseFlowerModel", value: NSKeyedArchiver.archivedData(withRootObject: array), filename: "WarehouseFlowerModel", extendedData: nil)
+    }
+    
+    func getWarehouseModels() ->NSMutableArray? {
+        if (CacheManager._sharedInstance.otherCache?.itemExists(forKey: "WarehouseFlowerModel"))! {
+            let item:Data = ((CacheManager._sharedInstance.otherCache?.getItemValue(forKey: "WarehouseFlowerModel"))!)
             return NSKeyedUnarchiver.unarchiveObject(with: item) as? NSMutableArray
         }
         return nil

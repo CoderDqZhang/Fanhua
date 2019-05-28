@@ -13,7 +13,8 @@ target 'FanHua' do
   pod 'JXSegmentedView'
   pod 'ReactiveCocoa'
   pod 'ReactiveSwift'
-  
+  pod 'MBProgressHUD'
+
   target 'FanHuaTests' do
     inherit! :search_paths
     # Pods for testing

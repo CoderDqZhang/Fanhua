@@ -180,31 +180,62 @@ class ViewController: UIViewController {
         imageView.image = image
         scrollerView.addSubview(imageView)
         
-        let array = CacheManager.getSharedInstance().getCategoryModels()
-
-        for index in 0...frames.count - 1 {
-            let button = self.setUpFollowButton(frame: frames[index])
-            button.tag = index + 1000
-            if array != nil {
-                for model in array! {
-                    let flower = FlowerModel.init(fromDictionary: model as! [String : Any])
-                    if flower.senderTat == index + 1000 {
-                        button.setImage(UIImage.init(named: flower.powFlowerName), for: .normal)
-                    }
-                }
-            }
-            
-            button.addTarget(self, action: #selector(self.followButtonSelect(_:)), for: .touchUpInside)
-            scrollerView.addSubview(button)
-        }
+        self.setFlowerButton()
         
         scrollerView.contentSize = CGSize.init(width: (image?.size.width)! * SCRRENHEIGHT / (image?.size.height)!, height: SCRRENHEIGHT)
     }
     
+    func setFlowerButton(){
+        let array = CacheManager.getSharedInstance().getCategoryModels()
+        
+        for index in 0...frames.count - 1 {
+            if scrollerView.viewWithTag(index + 1000) == nil {
+                let button = self.setUpFollowButton(frame: frames[index])
+                button.tag = index + 1000
+                button.imageView?.image = nil
+                if array != nil {
+                    for model in array! {
+                        let flower = FlowerModel.init(fromDictionary: model as! [String : Any])
+                        if flower.senderTat == index + 1000 {
+                            button.setImage(UIImage.init(named: flower.powFlowerName), for: .normal)
+                        }
+                    }
+                }
+                
+                button.addTarget(self, action: #selector(self.followButtonSelect(_:)), for: .touchUpInside)
+                scrollerView.addSubview(button)
+            }else{
+                let button:UIButton = scrollerView.viewWithTag(index + 1000) as! UIButton
+                button.setImage(nil, for: .normal)
+                button.imageView?.image = nil
+                if array != nil {
+                    for model in array! {
+                        let flower = FlowerModel.init(fromDictionary: model as! [String : Any])
+                        if flower.senderTat == index + 1000 {
+                            button.setImage(UIImage.init(named: flower.powFlowerName), for: .normal)
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
     @objc func followButtonSelect(_ sender:UIButton) {
         if sender.imageView?.image != nil {
+            let array = CacheManager.getSharedInstance().getCategoryModels()
             let flowerView = FlowerView.init(frame: CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: (SCRRENHEIGHT - 500) / 2, width: 400, height: 500))
-            flowerView.backgroundColor = .red
+            for index in 0...array!.count - 1 {
+                let flowerModel = FlowerModel.init(fromDictionary: array![index] as! [String : Any])
+                if flowerModel.senderTat == sender.tag {
+                    flowerView.setData(model: flowerModel,index)
+                }
+            }
+            flowerView.flowerViewClouse = { type in
+                if type == .confirm {
+                    self.setFlowerButton()
+                }
+            }
             self.view.addSubview(flowerView)
         }else{
             let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))

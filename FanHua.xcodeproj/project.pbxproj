@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F991764229CC1AD00C8FDD5 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F991763229CC1AD00C8FDD5 /* PageView.swift */; };
-		1F991768229CE57B00C8FDD5 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F991767229CE57B00C8FDD5 /* UIButton+Block.m */; };
 		1F99176B229D05C200C8FDD5 /* UIImage+UIImageExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176A229D05C200C8FDD5 /* UIImage+UIImageExtras.m */; };
 		1F99176D229D07E100C8FDD5 /* FlowerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176C229D07E000C8FDD5 /* FlowerModel.swift */; };
 		1F99176F229D3DC600C8FDD5 /* FlowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99176E229D3DC600C8FDD5 /* FlowerView.swift */; };
@@ -25,6 +24,7 @@
 		B83BBAB3229C4C00002210FD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BBAB2229C4C00002210FD /* LoginView.swift */; };
 		B83BBAB5229C5545002210FD /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BBAB4229C5545002210FD /* ContactView.swift */; };
 		B83BBAB7229C5563002210FD /* WarehouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BBAB6229C5563002210FD /* WarehouseView.swift */; };
+		B8596F7D229D637A00497418 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8596F7C229D637900497418 /* Tools.swift */; };
 		CE2AC974C659BE8C3AE9DEB3 /* Pods_FanHuaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF5AA795DAE33C67CE5AFA0 /* Pods_FanHuaUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +51,6 @@
 		1CB795A2C4DC4A1EAA73F905 /* Pods-FanHuaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FanHuaTests.debug.xcconfig"; path = "Target Support Files/Pods-FanHuaTests/Pods-FanHuaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F991763229CC1AD00C8FDD5 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		1F991765229CE57800C8FDD5 /* FanHua-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FanHua-Bridging-Header.h"; sourceTree = "<group>"; };
-		1F991766229CE57A00C8FDD5 /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
-		1F991767229CE57B00C8FDD5 /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
 		1F991769229D05C200C8FDD5 /* UIImage+UIImageExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImageExtras.h"; sourceTree = "<group>"; };
 		1F99176A229D05C200C8FDD5 /* UIImage+UIImageExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImageExtras.m"; sourceTree = "<group>"; };
 		1F99176C229D07E000C8FDD5 /* FlowerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerModel.swift; sourceTree = "<group>"; };
@@ -78,6 +76,7 @@
 		B83BBAB2229C4C00002210FD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B83BBAB4229C5545002210FD /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		B83BBAB6229C5563002210FD /* WarehouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseView.swift; sourceTree = "<group>"; };
+		B8596F7C229D637900497418 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		BB09E7B4DDC30DF5D5176999 /* Pods-FanHua.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FanHua.debug.xcconfig"; path = "Target Support Files/Pods-FanHua/Pods-FanHua.debug.xcconfig"; sourceTree = "<group>"; };
 		DEA0110295BE122AB456B1D0 /* Pods_FanHuaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FanHuaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,10 +166,9 @@
 				B83BBAB6229C5563002210FD /* WarehouseView.swift */,
 				B83BBAB0229C27B8002210FD /* CacheManager.swift */,
 				1F99176C229D07E000C8FDD5 /* FlowerModel.swift */,
+				B8596F7C229D637900497418 /* Tools.swift */,
 				B83BBA84229C230D002210FD /* Main.storyboard */,
 				B83BBA87229C230F002210FD /* Assets.xcassets */,
-				1F991766229CE57A00C8FDD5 /* UIButton+Block.h */,
-				1F991767229CE57B00C8FDD5 /* UIButton+Block.m */,
 				1F991769229D05C200C8FDD5 /* UIImage+UIImageExtras.h */,
 				1F99176A229D05C200C8FDD5 /* UIImage+UIImageExtras.m */,
 				B83BBA89229C230F002210FD /* LaunchScreen.storyboard */,
@@ -342,6 +340,7 @@
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/JXSegmentedView/JXSegmentedView.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
@@ -356,6 +355,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BetterSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXSegmentedView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
@@ -446,9 +446,9 @@
 				B83BBAB1229C27B8002210FD /* CacheManager.swift in Sources */,
 				B83BBAB7229C5563002210FD /* WarehouseView.swift in Sources */,
 				1F99176D229D07E100C8FDD5 /* FlowerModel.swift in Sources */,
-				1F991768229CE57B00C8FDD5 /* UIButton+Block.m in Sources */,
 				B83BBAB3229C4C00002210FD /* LoginView.swift in Sources */,
 				B83BBAB5229C5545002210FD /* ContactView.swift in Sources */,
+				B8596F7D229D637A00497418 /* Tools.swift in Sources */,
 				B83BBA81229C230D002210FD /* AppDelegate.swift in Sources */,
 				1F99176F229D3DC600C8FDD5 /* FlowerView.swift in Sources */,
 				1F991764229CC1AD00C8FDD5 /* PageView.swift in Sources */,
