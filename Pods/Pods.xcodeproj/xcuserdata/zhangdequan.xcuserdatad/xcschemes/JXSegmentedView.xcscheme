@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E6BC82972011A9D48F9D1454759BF07"
-               BuildableName = "Pods-FanHuaUITests.framework"
-               BlueprintName = "Pods-FanHuaUITests"
+               BlueprintIdentifier = "C069F20B741DD89C3C793FA64580617E"
+               BuildableName = "JXSegmentedView.framework"
+               BlueprintName = "JXSegmentedView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

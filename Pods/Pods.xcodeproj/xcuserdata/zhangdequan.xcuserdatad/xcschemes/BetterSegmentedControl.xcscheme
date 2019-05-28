@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E6BC82972011A9D48F9D1454759BF07"
-               BuildableName = "Pods-FanHuaUITests.framework"
-               BlueprintName = "Pods-FanHuaUITests"
+               BlueprintIdentifier = "7968CDD2A0AAD561F8A7F0EF2AE52317"
+               BuildableName = "BetterSegmentedControl.framework"
+               BlueprintName = "BetterSegmentedControl"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

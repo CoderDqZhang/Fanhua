@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E6BC82972011A9D48F9D1454759BF07"
-               BuildableName = "Pods-FanHuaUITests.framework"
-               BlueprintName = "Pods-FanHuaUITests"
+               BlueprintIdentifier = "57175CAA867C9D139F6DC5F3144E486A"
+               BuildableName = "AutoInsetter.framework"
+               BlueprintName = "AutoInsetter"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
