@@ -27,7 +27,7 @@ class ContactView: UIView {
     
     func setUpContactView(){
         var imageArrays:[UIImage] = []
-        imageArrays.append(UIImage.init(named: "好友名单")!)
+        imageArrays.append(UIImage.init(named: "头像框")!)
         pageView = PageView.init(frame: CGRect.init(x: 0, y: 50, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
         pageView.tag = 100
         self.addSubview(pageView)

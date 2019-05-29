@@ -26,6 +26,17 @@ class CacheManager: NSObject {
     
     private override init() {} // 私有化init方法
     
+    func saveMyFlower(myFlower:Int){
+        UserDefaults.standard.set(myFlower, forKey: "MyFlowers")
+    }
+    
+    func getMyFlower() -> Int{
+        if UserDefaults.standard.bool(forKey: "MyFlowers") {
+            return UserDefaults.standard.integer(forKey: "MyFlowers")
+        }
+        return 0
+    }
+    
     func saveNormaltModel(category:FlowerModel){
         var array = NSMutableArray.init()
         if (CacheManager._sharedInstance.otherCache?.itemExists(forKey: "FlowerModel"))! {

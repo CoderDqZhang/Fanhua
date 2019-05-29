@@ -35,6 +35,7 @@ class PageView: UIView {
         for index in 0...imageArrays.count - 1 {
             let imageView = UIImageView.init(frame: CGRect.init(x: (frame.size.width - 100) * CGFloat(index) + 50, y: 0, width: frame.size.width - 200, height: frame.size.height))
             imageView.image = imageArrays[index]
+            imageView.contentMode = .center
             imageView.backgroundColor = .clear
             scrollerPage.addSubview(imageView)
         }

@@ -28,6 +28,7 @@ class FlowerView: UIView {
     var fertilizerButon:UIButton!
     var weedingButton:UIButton!
     var sunButton:UIButton!
+    var closeButton:UIButton!
     
     var waterLabel:UILabel!
     var fertilizerLabel:UILabel!
@@ -131,6 +132,18 @@ class FlowerView: UIView {
             self.saveModel()
         }
         self.addSubview(sunButton)
+        
+        
+        closeButton = UIButton.init(type: .custom)
+        closeButton.setTitle("关闭", for: .normal)
+        closeButton.setTitleColor(.white, for: .normal)
+        closeButton.frame = CGRect.init(x: 0, y: 0, width: 70, height: 70)
+        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        closeButton.setBackgroundImage(UIImage.init(named: "浇水按键"), for: .normal)
+        closeButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
+            self.removeFromSuperview()
+        }
+        self.addSubview(closeButton)
         
         
         waterLabel = UILabel.init(frame: CGRect.init(x: 40, y: 300, width: 100, height: 30))

@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     var followName:String!
     var powName:String!
     
+    var muchLabel:UILabel!
+    
     var loginView:LoginView!
     
     var time:Timer!
@@ -39,9 +41,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setUpView()
-//        self.setUpAnwser()
-//        self.setUpLoginView()
         self.setUpTopView()
+        self.setUpLoginView()
     }
     
     func setUpTopView(){
@@ -50,23 +51,29 @@ class ViewController: UIViewController {
         houseButton.setTitle("仓库", for: .normal)
         houseButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
             let houseView = WarehouseView.init(frame: CGRect.init(x: 100, y: 300, width: SCRRENWIDHT - 200, height: SCRRENWIDHT - 200))
+            houseView.warehouseViewClouse = { flowers in
+                self.muchLabel.text = "\(CacheManager.getSharedInstance().getMyFlower())"
+            }
             self.view.addSubview(houseView)
         }
+        houseButton.setImage(UIImage.init(named: "WechatIMG8"), for: .normal)
         houseButton.setTitleColor(UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1), for: .normal)
-        houseButton.titleLabel?.font = UIFont.systemFont(ofSize: 45)
+        houseButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         houseButton.tag = 1
         self.view.addSubview(houseButton)
         houseButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view.snp.left).offset(30)
             make.top.equalTo(self.view.snp.top).offset(60)
-            make.size.equalTo(CGSize.init(width: 150, height: 100))
+            make.size.equalTo(CGSize.init(width: 60, height: 60))
         }
+        houseButton.titleEdgeInsets = UIEdgeInsets(top: houseButton.imageView!.bounds.size.height-5 + 40, left: (houseButton.bounds.size.width-houseButton.titleLabel!.bounds.size.width)*0.5-houseButton.imageView!.bounds.size.width - 65, bottom: 0, right: 0)
         
         let contactButton = UIButton.init(type: .custom)
         contactButton.frame = CGRect.init(x: 100, y: 100, width: 200, height: 40)
         contactButton.setTitle("通讯录", for: .normal)
+        contactButton.setImage(UIImage.init(named: "WechatIMG10"), for: .normal)
         contactButton.setTitleColor(UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1), for: .normal)
-        contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 45)
+        contactButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         contactButton.tag = 1
         contactButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
             let contactView = ContactView.init(frame: CGRect.init(x: 100, y: 300, width: SCRRENWIDHT - 200, height: SCRRENWIDHT - 200))
@@ -75,9 +82,34 @@ class ViewController: UIViewController {
         self.view.addSubview(contactButton)
         contactButton.snp.makeConstraints { (make) in
             make.left.equalTo(houseButton.snp.right).offset(30)
-            make.top.equalTo(houseButton.snp.top).offset(0)
-            make.size.equalTo(CGSize.init(width: 150, height: 100))
+            make.top.equalTo(houseButton.snp.top).offset(3)
+            make.size.equalTo(CGSize.init(width: 60, height: 60))
         }
+        contactButton.titleEdgeInsets = UIEdgeInsets(top: contactButton.imageView!.bounds.size.height-5 + 40, left: (contactButton.bounds.size.width-houseButton.titleLabel!.bounds.size.width)*0.5-contactButton.imageView!.bounds.size.width - 45, bottom: 0, right: 0)
+        
+        let imageView = UIImageView.init()
+        imageView.image = UIImage.init(named: "WechatIMG7")
+        self.view.addSubview(imageView)
+        imageView.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view.snp.right).offset(-30)
+            make.top.equalTo(houseButton.snp.top).offset(0)
+            make.size.equalTo(CGSize.init(width: 60, height: 60))
+        }
+        
+        muchLabel = UILabel.init()
+        muchLabel.textAlignment = .center
+        muchLabel.text = "\(CacheManager.getSharedInstance().getMyFlower())"
+        muchLabel.font = UIFont.systemFont(ofSize: 20)
+        muchLabel.textColor = UIColor.init(red: 165.0/255.0, green: 97.0/255.0, blue: 67.0/255.0, alpha: 1)
+        self.view.addSubview(muchLabel)
+        
+        muchLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view.snp.right).offset(-40)
+            make.top.equalTo(imageView.snp.bottom).offset(0)
+            make.centerX.equalTo(imageView.snp.centerX).offset(0)
+        }
+        
+        
     }
     
     func setUpLoginView(){
@@ -86,7 +118,7 @@ class ViewController: UIViewController {
         self.view.addSubview(loginView)
     }
     
-    func setUpAnwser(){
+    func setUpAnwser(sender:UIButton){
         answerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT, height: SCRRENHEIGHT))
         answerView.backgroundColor = UIColor.init(white: 1, alpha: 0.5)
         let image = UIImage.init(named: "答题背景")
@@ -135,7 +167,20 @@ class ViewController: UIViewController {
         
         centerButton.titleLabel?.font = UIFont.systemFont(ofSize: 45)
         centerButton.setTitle("B.木耳", for: .normal)
-        centerButton.addTarget(self, action: #selector(self.answerCenterButtonClick), for: .touchDown)
+        centerButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
+            if self.time != nil {
+                self.time.invalidate()
+            }
+            let image = UIImage.init(named: "IMG_0836")
+            let imageView = UIImageView.init(frame: CGRect.init(x: 250, y: 560, width: 400, height: 400))
+            imageView.image = image!
+            self.answerView.addSubview(imageView)
+            _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (time) in
+                self.answerView.removeFromSuperview()
+                self.setUpFlowerView(sender: sender)
+            })
+        }
+        
         answerView.addSubview(centerButton)
         centerButton.snp.makeConstraints { (make) in
             make.left.equalTo(answerView.snp.left).offset(260)
@@ -188,22 +233,6 @@ class ViewController: UIViewController {
             })
         }
     }
-    
-    @objc func answerCenterButtonClick(){
-        if time != nil {
-            time.invalidate()
-        }
-        
-        
-        let image = UIImage.init(named: "IMG_0836")
-        let imageView = UIImageView.init(frame: CGRect.init(x: 250, y: 560, width: 400, height: 400))
-        imageView.image = image!
-        answerView.addSubview(imageView)
-        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { (time) in
-            self.answerView.removeFromSuperview()
-        })
-    }
-
 
     func setUpView(){
         scrollerView = UIScrollView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT, height: SCRRENHEIGHT))
@@ -274,55 +303,59 @@ class ViewController: UIViewController {
             }
             self.view.addSubview(flowerView)
         }else{
-            let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))
-            followView.backgroundColor = .white
-            
-            var imageArray:[UIImage]! = []
-            let strs = ["1-1","1-4","1-5"]
-            for str in strs {
-                imageArray.append(UIImage.init(named: str)!)
-            }
-            let pageView = PageView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArray)
-            pageView.tag = 100
-            followView.addSubview(pageView)
-            
-            var imageArrays:[UIImage]! = []
-            let strsa = ["pow1","pow2","pow4","pow5","pow6","pow7","pow8"]
-            for str in strsa {
-                imageArrays.append(UIImage.init(named: str)!)
-            }
-            let pageView1 = PageView.init(frame: CGRect.init(x: 0, y: 400, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
-            pageView1.tag = 200
-            
-            followView.addSubview(pageView1)
-            
-            self.view.addSubview(followView)
-            
-            let button1 = UIButton.init(type: .custom)
-            button1.setTitle("种植", for: .normal)
-            button1.backgroundColor = .brown
-            button1.frame = CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: 800, width: 200, height: 80)
-            button1.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
-                let viewTag = self.view.viewWithTag(sender.tag) as! UIButton
-                print()
-                let name = "\(strsa[pageView1.selectIndex])-\(strs[pageView.selectIndex])"
-                let image = UIImage.init(named: name)
-                image?.scaling(to:viewTag.frame.size)
-                viewTag.setImage(image, for: .normal)
-                followView.removeFromSuperview()
-                CacheManager.getSharedInstance().saveNormaltModel(category: FlowerModel.init(fromDictionary: [
-                    "powName": strsa[pageView1.selectIndex],
-                    "flowerName": strs[pageView.selectIndex],
-                    "powFlowerName": name,
-                    "senderTat": sender.tag,
-                    "sun": 0,
-                    "water": 0,
-                    "weeding": 0,
-                    "apply": 0
-                    ]))
-            }
-            followView.addSubview(button1)
+            self.setUpAnwser(sender: sender)
         }
+    }
+    
+    func setUpFlowerView(sender: UIButton){
+        let followView = UIView.init(frame: CGRect.init(x: 100, y: 100, width: SCRRENWIDHT - 200, height: SCRRENHEIGHT - 200))
+        followView.backgroundColor = .white
+        
+        var imageArray:[UIImage]! = []
+        let strs = ["1-1","1-4","1-5"]
+        for str in strs {
+            imageArray.append(UIImage.init(named: str)!)
+        }
+        let pageView = PageView.init(frame: CGRect.init(x: 0, y: 0, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArray)
+        pageView.tag = 100
+        followView.addSubview(pageView)
+        
+        var imageArrays:[UIImage]! = []
+        let strsa = ["pow1","pow2","pow4","pow5","pow6","pow7","pow8"]
+        for str in strsa {
+            imageArrays.append(UIImage.init(named: str)!)
+        }
+        let pageView1 = PageView.init(frame: CGRect.init(x: 0, y: 400, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
+        pageView1.tag = 200
+        
+        followView.addSubview(pageView1)
+        
+        self.view.addSubview(followView)
+        
+        let button1 = UIButton.init(type: .custom)
+        button1.setTitle("种植", for: .normal)
+        button1.backgroundColor = .brown
+        button1.frame = CGRect.init(x: (SCRRENWIDHT - 400) / 2, y: 800, width: 200, height: 80)
+        button1.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
+            let viewTag = self.view.viewWithTag(sender.tag) as! UIButton
+            print()
+            let name = "\(strsa[pageView1.selectIndex])-\(strs[pageView.selectIndex])"
+            let image = UIImage.init(named: name)
+            image?.scaling(to:viewTag.frame.size)
+            viewTag.setImage(image, for: .normal)
+            followView.removeFromSuperview()
+            CacheManager.getSharedInstance().saveNormaltModel(category: FlowerModel.init(fromDictionary: [
+                "powName": strsa[pageView1.selectIndex],
+                "flowerName": strs[pageView.selectIndex],
+                "powFlowerName": name,
+                "senderTat": sender.tag,
+                "sun": 0,
+                "water": 0,
+                "weeding": 0,
+                "apply": 0
+                ]))
+        }
+        followView.addSubview(button1)
     }
     
     

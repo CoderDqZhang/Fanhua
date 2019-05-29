@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias WarehouseViewClouse = (_ flower:Int) ->Void
+
 class WarehouseView: UIView {
 
     var segmented:UISegmentedControl!
@@ -15,6 +17,8 @@ class WarehouseView: UIView {
     var pageView1:PageView!
     
     var toolsButton:UIButton!
+    var warehouseViewClouse:WarehouseViewClouse!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,7 +36,7 @@ class WarehouseView: UIView {
                 let model = FlowerModel.init(fromDictionary: str as! [String : Any])
                 imageArrays.append(UIImage.init(named: model.powFlowerName)!)
             }
-            pageView = PageView.init(frame: CGRect.init(x: 0, y: 50, width: SCRRENWIDHT - 200, height: 400), imageArrays: imageArrays)
+            pageView = PageView.init(frame: CGRect.init(x: 0, y: 50, width: SCRRENWIDHT - 200, height: 500), imageArrays: imageArrays)
             pageView.tag = 200
             self.addSubview(pageView)
         }else{
@@ -83,7 +87,22 @@ class WarehouseView: UIView {
         toolsButton.frame = CGRect.init(x: (frame.size.width - 200) / 2, y: 500, width: 200, height: 80)
         
         toolsButton.reactive.controlEvents(.touchUpInside).observeValues { (butto) in
-            self.removeFromSuperview()
+            if self.toolsButton.titleLabel?.text == "出售" {
+                CacheManager.getSharedInstance().saveMyFlower(myFlower:  CacheManager.getSharedInstance().getMyFlower() + 20)
+                self.removeFromSuperview()
+
+            }else{
+                if CacheManager.getSharedInstance().getMyFlower() < 20 {
+                    _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "您暂时没钱", autoHidder: true)
+                }else{
+                    CacheManager.getSharedInstance().saveMyFlower(myFlower:  CacheManager.getSharedInstance().getMyFlower() - 20)
+                    self.removeFromSuperview()
+
+                }
+            }
+            if self.warehouseViewClouse != nil {
+                self.warehouseViewClouse(CacheManager.getSharedInstance().getMyFlower())
+            }
         }
         self.addSubview(toolsButton)
     }
