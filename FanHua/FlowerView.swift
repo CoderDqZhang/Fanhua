@@ -56,7 +56,7 @@ class FlowerView: UIView {
     }
     
     func setUpView(){
-        imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 300, height: 300))
+        imageView = UIImageView.init(frame: CGRect.init(x: 100, y: 30, width: 100, height: 200))
         self.addSubview(imageView)
         
         waterButton = UIButton.init(type: .custom)
@@ -97,7 +97,7 @@ class FlowerView: UIView {
         
         weedingButton = UIButton.init(type: .custom)
         weedingButton.frame = CGRect.init(x: frame.size.width - 100, y: 210, width: 70, height: 70)
-        weedingButton.setTitle("除虫", for: .normal)
+        weedingButton.setTitle("除草", for: .normal)
         weedingButton.setTitleColor(.white, for: .normal)
         weedingButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         weedingButton.setBackgroundImage(UIImage.init(named: "浇水按键"), for: .normal)
@@ -105,7 +105,7 @@ class FlowerView: UIView {
             if self.flowerViewClouse != nil {
                 self.flowerViewClouse(.weeding)
             }
-            _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "除虫成功", autoHidder: true)
+            _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "除草成功", autoHidder: true)
             self.weedingSlider.value = self.weedingSlider.value + 20
             self.model.weeding = Int(self.weedingSlider.value)
             self.weedingSlider.setValue(self.weedingSlider.value, animated: true)
@@ -134,14 +134,14 @@ class FlowerView: UIView {
         
         
         waterLabel = UILabel.init(frame: CGRect.init(x: 40, y: 300, width: 100, height: 30))
-        waterLabel.text = "浇水"
+        waterLabel.text = "除草"
         waterLabel.font = UIFont.systemFont(ofSize: 20)
         waterLabel.textAlignment = .left
         waterLabel.textColor = .white
         self.addSubview(waterLabel)
         
         fertilizerLabel = UILabel.init(frame: CGRect.init(x: 40, y: 340, width: 100, height: 30))
-        fertilizerLabel.text = "除草"
+        fertilizerLabel.text = "浇水"
         fertilizerLabel.font = UIFont.systemFont(ofSize: 20)
         fertilizerLabel.textAlignment = .left
         fertilizerLabel.textColor = .white
@@ -208,6 +208,22 @@ class FlowerView: UIView {
         confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         confirmButton.setBackgroundImage(UIImage.init(named: "done"), for: .normal)
         confirmButton.reactive.controlEvents(.touchUpInside).observeValues { (button) in
+            if self.model.apply != 100 {
+                _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "施肥还不够呢", autoHidder: true)
+                return
+            }
+            if self.model.water != 100 {
+                _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "浇水还不够呢", autoHidder: true)
+                return
+            }
+            if self.model.weeding != 100 {
+                _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "除虫还不够呢", autoHidder: true)
+                return
+            }
+            if self.model.sun != 100 {
+                _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "光照还不够呢", autoHidder: true)
+                return
+            }
             CacheManager.getSharedInstance().saveNormaltWarehouseModel(category: self.model)
             _ = Tools.shareInstance.showMessage(KWINDOWDS!, msg: "收获成功", autoHidder: true)
             self.deleteModel()

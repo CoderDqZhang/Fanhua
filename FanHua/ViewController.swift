@@ -39,8 +39,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setUpView()
-        self.setUpAnwser()
-        self.setUpLoginView()
+//        self.setUpAnwser()
+//        self.setUpLoginView()
         self.setUpTopView()
     }
     
